@@ -1,0 +1,6 @@
+{
+  "tasks": {
+    "email": "deno run --unstable --allow-net --allow-env --allow-read lib/email.ts",
+    "debug": "deno run --inspect-brk --unstable --allow-net --allow-env --allow-read lib/email.ts"
+  }
+}
