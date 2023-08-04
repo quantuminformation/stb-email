@@ -1,0 +1,1 @@
+export const imageRoot='https://quantuminformation.github.io/stb-email/images/'

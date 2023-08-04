@@ -1,2 +1,4 @@
 .idea
 /temp
+.env
+node_modules
