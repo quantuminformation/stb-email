@@ -1,6 +1,7 @@
 import { imageRoot } from './config.mjs';
 import { config } from 'dotenv';
 import nodemailer from 'nodemailer';
+import fs from 'fs';
 
 config();
 
@@ -75,7 +76,13 @@ async function main() {
     to: process.env.RECIPIENT_EMAIL, // list of receivers
     subject: process.env.EMAIL_SUBJECT, // Subject line
     text: emailPlainTextContent, // plain text body
-    html: emailHtmlContent // html body
+    html: emailHtmlContent,
+    dkim: {
+      domainName: 'nikoskatsikanis.com',
+      keySelector: 'key1', // Replace with your selector
+      privateKey: fs.readFileSync('keys/key1') // Load the private key
+    }
+
   });
 
   console.log('Message sent: %s', info.messageId);
