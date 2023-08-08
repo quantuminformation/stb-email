@@ -1,5 +1,6 @@
 # licences
-All code is Code -> GPL 
+
+All code is Code -> GPL
 
 Imagery is cc-by-nc
 
@@ -17,6 +18,8 @@ YOUR_EMAIL=
 RECIPIENT_EMAIL=
 EMAIL_SUBJECT=Test Email Template
 ```
+
+Add your dkim private key to /keys
 
 run `pnpm install`
 then
