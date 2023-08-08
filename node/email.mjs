@@ -36,7 +36,7 @@ let tableHtmlButtons = tableColumnData.map(data => `
     <td style='border: 2px solid black;'><a href='${data.link}' style=' color: #ffffff; padding: 10px; text-decoration: none;'>Button</a></td>`).join('');
 
 let tableHtml = `
-  <table style=' color: #ffffff; margin: auto; border-collapse: collapse;'>
+  <table style=' color: #ffffff; width: 100%; border-collapse: collapse;'>
     <tr>${tableHtmlTitles}</tr>
     <tr>${tableHtmlRows}</tr>
     <tr>${tableHtmlButtons}</tr>
@@ -45,9 +45,9 @@ let tableHtml = `
 
 let emailHtmlContent = `
   <div style='background-color: #313132; color: #ffffff; font-size: 1.1rem;'>
-    <img src='${imageRoot}/STB-Logo-neu_transparent.png'  style='width: 12rem;  padding:1rem; display: block;' alt='Logo'/>
-    <img src='${imageRoot}/hero.png' style='width: 100%;  alt='Hero image"/>
-    <center><div style=' padding:1rem; max-width: 50rem;'><p style='text-align: center;'>${bodyText}</p>
+    <img src='${imageRoot}/STB-Logo-neu_transparent.png'  style='width: 10rem;  padding:1rem; display: block;' alt='Logo'/>
+    <img src='${imageRoot}/hero.png' style='width: 100%;'  alt='Hero image'/>
+    <center><div style=' padding:1rem; max-width: 50rem; width:50rem'><p style='text-align: center;'>${bodyText}</p>
     ${tableHtml}
     <p style='text-align: center;'>Footer content here</p>
     </div></center>
@@ -69,7 +69,13 @@ async function main() {
     }
 
   });
+  const dkim = {
+    domainName: 'nikoskatsikanis.com',
+    keySelector: 'key1', // Replace with your selector
+    privateKey: fs.readFileSync('keys/key1') // Load the private key
+  };
 
+  console.log(dkim);
   // send mail with defined transport object
   let info = await transporter.sendMail({
     from: process.env.YOUR_EMAIL, // sender address
