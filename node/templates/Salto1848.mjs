@@ -2,39 +2,42 @@ import { imageRoot } from '../config.mjs';
 
 const isWhiteText = true; // You can change this value to false for black text
 const textColor = isWhiteText ? '#ffffff' : '#000000';
+const linkCSS = 'color: #e74c3c; font-weight: bold; text-decoration: none;';
 
 const link =
   'https://mailing.stb.de/link.php?link=01_02_04_784_6_04-3CE-01-9FB063983E6E8D12929A925F38A20454-FFC1F06C0B7FA6A3E49D&utm_source=mailing.stb.de&utm_medium=mailing&utm_campaign=allgemein-theo';
 
-const bodyText = `Hallo liebe Vereinsvertretende,
+const bodyText = ` <div style='text-align:  center;'><p>Hallo liebe Vereinsvertretende,<br><br>
 
 ab heute ist die neue Ausgabe des <strong>Salto 1848</strong> wieder online verfügbar. 
 Klickt euch direkt rein, erfahrt viele spannende Dinge aus der Vereinswelt und schaut euch die neuen Praxistipps im Kinderturnen, Turnen sowie in der <strong>GYMWELT</strong> an.
-
+</p>
 <a href='${link}'>
-  <img style="width:20rem" src='${imageRoot}btn_jetzt.png' />
+  <img style='width:20rem' src='${imageRoot}btn_jetzt.png' />
 </a>
-Teilt <a href='${link}'>den Link</a> gerne in eurem Verein, damit alle einen Blick ins neue Heft werfen können, oder tragt noch weitere E-Mail-Adressen ein.
-
+<p>
+Teilt <a href='${link}' style='${linkCSS}'>den Link</a> gerne in eurem Verein, damit alle einen Blick ins neue Heft werfen können, oder tragt noch weitere E-Mail-Adressen ein.
+</p>
+</div> 
 `;
 const tableColumnData = [
   {
     content: 'Viel Spaß beim Lesen wünscht\n' + 'das Redaktionsteam',
   },
   {
-    content: `<img style="width:20rem" src='${imageRoot}175.png' />`,
+    content: `<img style='width:20rem' src='${imageRoot}175.png' />`,
   },
 ];
 
 let tableHtmlRows = tableColumnData
   .map(
     (data) => `
-    <td style='border: 2px solid black; width: 50%;'>${data.content}</td>`,
+    <td style='border: 2px solid black; width: 50%; text-align: center; padding: 1rem;'>${data.content}</td>`,
   )
   .join('');
 
 let tableHtml = `
-  <table style=' color: ${textColor}; width: 100%; border-collapse: collapse;'>
+  <table style='color: #ffffff; width: 100%; border-collapse: collapse;'>
     <tr>${tableHtmlRows}</tr>
   </table>
 `;
@@ -44,7 +47,7 @@ let emailHtmlContent = `
     <img src='${imageRoot}logo.png'  style='width: 10rem;  padding:1rem; display: block;' alt='Logo'/>
     <img src='${imageRoot}hero_salto.jpeg' style='width: 100%;'  alt='Hero image'/>
     <div style=' padding:1rem; max-width: 50rem; width:50rem'>
-      <p style='text-align: justify;'>${bodyText}</p>
+     ${bodyText}
       ${tableHtml}
       
   
