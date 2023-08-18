@@ -1,17 +1,26 @@
+// stored in node/default.mjs
+
 import { config } from 'dotenv';
 import nodemailer from 'nodemailer';
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url'; // <-- Import this
-import { emailHtmlContent, emailPlainTextContent } from './templates/default.mjs';
+import { fileURLToPath } from 'url';
 
 config();
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url)); // <-- Define this
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// Dynamically import the template based on CLI input
+const templateName = process.argv[2] || 'default';
+const { emailHtmlContent, emailPlainTextContent } = await import(`./templates/${templateName}.mjs`);
+
+config();
 
 async function saveEmailContentToDisk(plainText, htmlContent, templateName) {
   const timestamp = new Date().toISOString().replace(/:/g, '-');
-  const emailDir = path.join(__dirname, 'saved_emails', templateName, timestamp);
+
+  // We are storing the emails up a directory
+  const emailDir = path.join(__dirname, '..', 'saved_emails', templateName, timestamp);
 
   // Ensure directory exists
   if (!fs.existsSync(emailDir)) {
@@ -54,7 +63,7 @@ async function main() {
   });
 
   // Save email content to disk
-  await saveEmailContentToDisk(emailPlainTextContent, emailHtmlContent, 'default');
+  await saveEmailContentToDisk(emailPlainTextContent, emailHtmlContent, templateName); // use 'templateName' instead of 'default'
 
   console.log('Message sent: %s', info.messageId);
   console.log(emailPlainTextContent);

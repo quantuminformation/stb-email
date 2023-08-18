@@ -58,8 +58,8 @@ let tableHtml = `
 
 let emailHtmlContent = `
   <div style='background-color: #313132; color: #ffffff; font-size: 1.1rem;'>
-    <img src='${imageRoot}/STB-Logo-neu_transparent.png'  style='width: 10rem;  padding:1rem; display: block;' alt='Logo'/>
-    <img src='${imageRoot}/hero.png' style='width: 100%;'  alt='Hero image'/>
+    <img src='${imageRoot}logo_border_white.png'  style='width: 10rem;  padding:1rem; display: block;' alt='Logo'/>
+    <img src='${imageRoot}hero.png' style='width: 100%;'  alt='Hero image'/>
     <center><div style=' padding:1rem; max-width: 50rem; width:50rem'><p style='text-align: justify;color: #ffffff; '>${bodyText}</p>
     ${tableHtml}
     <p style='text-align: center;'>Footer content here</p>

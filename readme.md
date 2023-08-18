@@ -23,4 +23,9 @@ Add your dkim private key to /keys
 
 run `pnpm install`
 then
-run `pnpm start` to send the email
+run `pnpm start` to send the email in default dir
+
+# Sending custom emails
+Use the name of the template after start `pnpm start Salto1848` or run it directly
+
+`node node/email.mjs Salto1848`
